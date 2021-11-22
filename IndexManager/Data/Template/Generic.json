@@ -1,0 +1,202 @@
+{
+  "index_patterns": [ "logs-generic-*" ],
+  "aliases": {
+    "logs-generic-aliases": {}
+  },
+  "mappings": {
+    "properties": {
+      "Exception": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "Level": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "MessageTemplate": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "Properties": {
+        "properties": {
+          "AdditionalProperties": {
+            "properties": {
+              "ApplicationInstance": {
+                "type": "text",
+                "fields": {
+                  "keyword": {
+                    "type": "keyword",
+                    "ignore_above": 256
+                  }
+                }
+              },
+              "CompanyInformationId": {
+                "type": "long"
+              },
+              "CorrelationId": {
+                "type": "text",
+                "fields": {
+                  "keyword": {
+                    "type": "keyword",
+                    "ignore_above": 256
+                  }
+                }
+              },
+              "Id": {
+                "type": "text",
+                "fields": {
+                  "keyword": {
+                    "type": "keyword",
+                    "ignore_above": 256
+                  }
+                }
+              },
+              "LogType": {
+                "type": "text",
+                "fields": {
+                  "keyword": {
+                    "type": "keyword",
+                    "ignore_above": 256
+                  }
+                }
+              },
+              "ResourceNumber": {
+                "type": "long"
+              },
+              "Source": {
+                "type": "text",
+                "fields": {
+                  "keyword": {
+                    "type": "keyword",
+                    "ignore_above": 256
+                  }
+                }
+              },
+              "_typeTag": {
+                "type": "text",
+                "fields": {
+                  "keyword": {
+                    "type": "keyword",
+                    "ignore_above": 256
+                  }
+                }
+              }
+            }
+          },
+          "CompanyInformationId": {
+            "type": "long"
+          },
+          "CurrentDate": {
+            "type": "date"
+          },
+          "FulfillmentType": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "ImportStatus": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "Item": {
+            "type": "long"
+          },
+          "ItemKey": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "Message": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "OrderId": {
+            "type": "long"
+          },
+          "ReferenceOrderId": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "ScheduleId": {
+            "type": "long"
+          },
+          "ShippingVendorType": {
+            "type": "text",
+            "fields": {
+              "keyword": {
+                "type": "keyword",
+                "ignore_above": 256
+              }
+            }
+          },
+          "StoreId": {
+            "type": "long"
+          },
+          "TimeMilliseconds": {
+            "type": "long"
+          }
+        }
+      },
+      "RenderedMessage": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "Timestamp": {
+        "type": "date"
+      }
+    }
+  },
+  "settings": {
+    "index": {
+      "number_of_shards": "5",
+      "blocks": {
+        "read_only_allow_delete": "false",
+        "write": "false"
+      },
+      "number_of_replicas": "1"
+    }
+  }
+}

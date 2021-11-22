@@ -1,0 +1,6 @@
+{
+  "index_patterns": [ "logs-order-*" ],
+  "aliases": {
+    "logs-order-aliases": {}
+  }
+}

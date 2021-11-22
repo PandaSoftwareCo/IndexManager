@@ -1,0 +1,6 @@
+{
+  "index_patterns": [ "logs-schedule-*" ],
+  "aliases": {
+    "logs-schedule-aliases": {}
+  }
+}

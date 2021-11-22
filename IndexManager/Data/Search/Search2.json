@@ -1,0 +1,29 @@
+{
+  "size": 50,
+  "from": 50,
+  "sort": [ { "Timestamp": "desc" } ],
+  "query": {
+    "bool": {
+      "filter": [
+        {
+          "term": {
+            "Properties.AdditionalProperties.CompanyInformationId": 222
+          }
+        },
+        {
+          "match": {
+            "Properties.AdditionalProperties.Source": "OrderImportJob"
+          }
+        },
+        {
+          "range": {
+            "Timestamp": {
+              "gte": "2021-03-01T00:00:00",
+              "lte": "2021-08-26T00:00:00"
+            }
+          }
+        }
+      ]
+    }
+  }
+}

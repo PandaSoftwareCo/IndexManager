@@ -1,0 +1,6 @@
+{
+  "index_patterns": [ "logs-restapi-*" ],
+  "aliases": {
+    "logs-restapi-aliases": {}
+  }
+}

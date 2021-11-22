@@ -1,0 +1,6 @@
+{
+  "index_patterns": [ "logs-ftp-*" ],
+  "aliases": {
+    "logs-ftp-aliases": {}
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "index_patterns": [ "logs-awsconsumer-*" ],
+  "aliases": {
+    "logs-awsconsumer-aliases": {}
+  }
+}

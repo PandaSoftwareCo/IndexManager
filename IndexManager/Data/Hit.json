@@ -1,0 +1,29 @@
+{
+  "_index": "logs-awsconsumer-0000000001",
+  "_type": "AwsConsumer",
+  "_id": "20210626T232638-b20d2152-8057-408a-8cc9-68fbdad2b2bf-1ab9b477-e91f-4010-80f4-41e867d81f7a",
+  "_score": null,
+  "_source": {
+    "Timestamp": "2021-06-26T23:26:43.3033798Z",
+    "Level": "Information",
+    "MessageTemplate": "There are no messages to be grouped. Additional Properties: {@AdditionalProperties}. ",
+    "RenderedMessage": "There are no messages to be grouped. Additional Properties: MessageLogger { SourceName: null, Action: null, ParentMessageId: \"\", ChildMessageIds: [], CompanyInformationId: 0, LogType: \"AwsConsumer\", Id: \"20210626T232638-b20d2152-8057-408a-8cc9-68fbdad2b2bf\", CorrelationId: \"0e14309f-24b7-47ac-a870-33a942bf0e23\", Source: \"ConsumerSqsFunction\" }. ",
+    "Properties": {
+      "AdditionalProperties": {
+        "_typeTag": "MessageLogger",
+        "SourceName": null,
+        "Action": null,
+        "ParentMessageId": "",
+        "ChildMessageIds": [],
+        "CompanyInformationId": 0,
+        "LogType": "AwsConsumer",
+        "Id": "20210626T232638-b20d2152-8057-408a-8cc9-68fbdad2b2bf",
+        "CorrelationId": "0e14309f-24b7-47ac-a870-33a942bf0e23",
+        "Source": "ConsumerSqsFunction"
+      }
+    }
+  },
+  "sort": [
+    1624750003303
+  ]
+}

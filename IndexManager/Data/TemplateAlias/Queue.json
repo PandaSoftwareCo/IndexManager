@@ -1,0 +1,6 @@
+{
+  "index_patterns": [ "logs-queue-*" ],
+  "aliases": {
+    "logs-queue-aliases": {}
+  }
+}

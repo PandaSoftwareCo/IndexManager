@@ -1,0 +1,6 @@
+{
+  "index_patterns": [ "logs-dataaccess-*" ],
+  "aliases": {
+    "logs-dataaccess-aliases": {}
+  }
+}

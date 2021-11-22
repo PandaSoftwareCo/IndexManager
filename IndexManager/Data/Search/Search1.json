@@ -1,0 +1,51 @@
+{
+  "size": 50,
+  "from": 0,
+  "query": {
+    "bool": {
+      "must": null,
+      "filter": [
+        {
+          "match": {
+            "Properties.AdditionalProperties.CompanyInformationId": {
+              "query": "222",
+              "operator": "OR",
+              "prefix_length": 0,
+              "max_expansions": 50,
+              "fuzzy_transpositions": true,
+              "lenient": false,
+              "zero_terms_query": "NONE",
+              "auto_generate_synonyms_phrase_query": true,
+              "boost": 1
+            }
+          }
+        },
+        {
+          "match": {
+            "Properties.AdditionalProperties.Source": {
+              "query": "OrderImportJob",
+              "operator": "OR",
+              "prefix_length": 0,
+              "max_expansions": 50,
+              "fuzzy_transpositions": true,
+              "lenient": false,
+              "zero_terms_query": "NONE",
+              "auto_generate_synonyms_phrase_query": true,
+              "boost": 1
+            }
+          }
+        },
+        {
+          "range": {
+            "Timestamp": {
+              "gte": "2021-03-01T00:00:00",
+              "lte": "2021-08-26T00:00:00"
+            }
+          }
+        }
+      ],
+      "adjust_pure_negative": true,
+      "boost": 1
+    }
+  }
+}

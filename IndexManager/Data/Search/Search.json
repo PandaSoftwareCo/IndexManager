@@ -1,0 +1,74 @@
+{
+  "sort": [ { "Timestamp": "desc" } ],
+  //"sort": [ { "@timestamp": "desc" } ],
+  //"from": 0,
+  "size": 500,
+  //"explain": true,
+  "query": {
+    //"match_all": {}
+
+    "bool": {
+      "filter": [
+        //{ "match": { "Properties.AdditionalProperties.LogType": "AwsConsumer" } },
+        //{ "match": { "Properties.AdditionalProperties.LogType": "DataAccess" } },
+        //{ "match": { "Properties.AdditionalProperties.LogType": "Event" } },
+        //{ "match": { "Properties.AdditionalProperties.LogType": "Generic" } },
+        //{ "match": { "Properties.AdditionalProperties.LogType": "Order" } },
+        //{ "match": { "Properties.AdditionalProperties.LogType": "RedisDataAccess" } },
+        //{ "match": { "Properties.AdditionalProperties.LogType": "RestApi" } },
+        //{ "match": { "Properties.AdditionalProperties.LogType": "Schedule" } },
+        //{ "match": { "Properties.AdditionalProperties.LogType": "RedisLogger" } },
+        //{ "match": { "Properties.AdditionalProperties.LogType": "RedisLogger" } },
+        //{
+        //  "match": {
+        //    "Properties.AdditionalProperties.LogType": "Generic"
+        //  }
+        //},
+        //{
+        //  "match": {
+        //    "Properties.AdditionalProperties.LogType": "Schedule"
+        //  }
+        //},
+        { "match": { "Level": "Information" } },
+        //{ "match": { "Level": "Error" } },
+        //{ "match": { "MessageTemplate": "Response has been received. {@ApiLog} Additional Properties: {@AdditionalProperties}." } },
+        //{ "term": { "Properties.AdditionalProperties.ScheduleId": 399 } },
+        { "term": { "Properties.AdditionalProperties.CompanyInformationId": 0 } },
+        //{ "match": { "Properties.LogPrefix": "Orderbot Testing-LiveReplica-Nov23-Christine (715)" } },
+        //{ "match": { "Properties.AdditionalProperties.Source": "OrderImportJob" } },
+        //{ "match": { "Properties.CurrentUser": "SHOPIFY" } },
+        //{ "match": { "Properties.AdditionalProperties.Source": "API" } },
+        {
+          "range": {
+            "Timestamp": {
+              "gte": "2021-09-24T12:30:00"
+              //"lte": "2021-09-02T12:32:00"
+              //"lt": "now\/d"
+              //"lt": "now-24"
+            }
+          }
+        }
+      ]
+    }
+
+    //"query_string": {
+    //  "query": 222,
+    //  "default_field": "Properties.AdditionalProperties.CompanyInformationId"
+    //}
+    //"multi_match": {
+    //  "query": 399,
+    //  "fields": ["ScheduleId", "CompanyInformationId"]
+    //}
+    //"match": {
+    //  //"Level": "Information"
+    //  //"Properties.LogPrefix": "Staples-LiveReplica-Apr04-StaplesUAT (399)"
+    //  "Properties.AdditionalProperties.ScheduleId": 399,
+    //  "Properties.AdditionalProperties.CompanyInformationId": 222
+    //}
+    //"match_phrase": {
+    //  "RenderedMessage": {
+    //    "query": "Trying to parse response body"
+    //  }
+    //}
+  }
+}

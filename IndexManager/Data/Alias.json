@@ -1,0 +1,10 @@
+{
+  "actions": [
+    {
+      "add": {
+        "index": "INDEX_NAME",
+        "alias": "ALIAS_NAME"
+      }
+    }
+  ]
+}

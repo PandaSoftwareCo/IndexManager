@@ -1,0 +1,6 @@
+{
+  "index_patterns": [ "logs-generic-*" ],
+  "aliases": {
+    "logs-generic-aliases": {}
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "index_patterns": [ "logs-queueconsumerconsole-*" ],
+  "aliases": {
+    "logs-queueconsumerconsole-aliases": {}
+  }
+}

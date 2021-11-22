@@ -1,0 +1,392 @@
+﻿<RibbonWindow x:Class="IndexManager.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:IndexManager"
+        mc:Ignorable="d"
+        Icon="Images/document.png" WindowState="Maximized"
+        Title="IndexManager" Height="450" Width="800" Loaded="Window_Loaded">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Ribbon x:Name="Ribbon" Title="" Grid.Row="0" >
+            <Ribbon.HelpPaneContent>
+                <RibbonButton Label="Help" Visibility="Collapsed"/>
+            </Ribbon.HelpPaneContent>
+            <Ribbon.QuickAccessToolBar>
+                <RibbonQuickAccessToolBar Visibility="Collapsed">
+                    <RibbonButton x:Name="QATButton1" 
+                                  Label="1" />
+                    <RibbonButton x:Name="QATButton2" 
+                                  Label="2" />
+                </RibbonQuickAccessToolBar>
+            </Ribbon.QuickAccessToolBar>
+            <Ribbon.ApplicationMenu>
+                <RibbonApplicationMenu Visibility="Collapsed">
+                    <RibbonApplicationMenuItem Header="Hello _Ribbon"
+                                                      x:Name="MenuItem1"
+                                                      />
+                </RibbonApplicationMenu>
+            </Ribbon.ApplicationMenu>
+            <RibbonTab Header="Indexes">
+                <RibbonGroup Header="">
+                    <RibbonComboBox Label="URL: " 
+                                    SelectionBoxWidth="240"
+                                    HorizontalAlignment="Left">
+                        <RibbonGallery SelectedValue="{Binding Url, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
+                                       SelectedValuePath="Content"
+                                       MaxColumnCount="1" >
+                            <RibbonGalleryCategory >
+                                <RibbonGalleryItem Content="http://localhost:9200"/>
+                                <RibbonGalleryItem Content="http://cfdvw30.cfdynamics.net:8008"/>
+                                <RibbonGalleryItem Content="http://cfdvw30.cfdynamics.net:8080"/>
+                            </RibbonGalleryCategory>
+                        </RibbonGallery>
+                    </RibbonComboBox>
+                </RibbonGroup>
+                <RibbonGroup>
+                    <RibbonButton Label="Load" ToolTip="Load Indexes"
+                                  Command="{Binding LoadAsyncCommand}" LargeImageSource="Images/mail_new.png" />
+                </RibbonGroup>
+                <RibbonGroup>
+                    <RibbonTextBox Label="Index Name: " TextBoxWidth="220"
+                                   Text="{Binding IndexName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
+                </RibbonGroup>
+                <RibbonGroup>
+                    <RibbonButton Label="Save" ToolTip="Update Index"
+                                  Command="{Binding UpdateIndexAsyncCommand}" LargeImageSource="Images/Save.png" />
+                </RibbonGroup>
+                <RibbonGroup>
+                    <RibbonButton Label="Delete" ToolTip="Delete Index"
+                                  Command="{Binding DeleteIndexAsyncCommand}" LargeImageSource="Images/Delete.png" />
+                </RibbonGroup>
+                <RibbonGroup>
+                    <RibbonTextBox Label="Alias Name: " TextBoxWidth="220"
+                                   Text="{Binding AliasName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
+                </RibbonGroup>
+                <RibbonGroup>
+                    <RibbonButton Label="Alias" ToolTip="Add Alias"
+                                  Command="{Binding PostAliasAsyncCommand}" LargeImageSource="Images/mail_new.png" />
+                </RibbonGroup>
+            </RibbonTab>
+            <RibbonTab Header="Aliases">
+                <RibbonGroup>
+                    <RibbonButton Label="Load" ToolTip="Load Aliases"
+                                  Command="{Binding LoadAliasAsyncCommand}" LargeImageSource="Images/mail_new.png" />
+                </RibbonGroup>
+            </RibbonTab>
+            <RibbonTab Header="Templates">
+                <RibbonGroup Header="">
+                    <RibbonButton Label="Load" ToolTip="Load Templates"
+                                  Command="{Binding LoadTemplatesAsyncCommand}" LargeImageSource="Images/mail_new.png" />
+                </RibbonGroup>
+                <RibbonGroup>
+                    <RibbonComboBox Label="Template: " 
+                                    SelectionBoxWidth="120"
+                                    HorizontalAlignment="Left">
+                        <RibbonGallery SelectedValue="{Binding SelectedTemplateName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
+                                       SelectedValuePath="Content"
+                                       MaxColumnCount="1" >
+                            <RibbonGalleryCategory >
+                                <RibbonGalleryItem Content="IndexManager"/>
+                                <RibbonGalleryItem Content="AwsConsumer"/>
+                                <RibbonGalleryItem Content="DataAccess"/>
+                                <RibbonGalleryItem Content="Event"/>
+                                <RibbonGalleryItem Content="Ftp"/>
+                                <RibbonGalleryItem Content="Generic"/>
+                                <RibbonGalleryItem Content="Order"/>
+                                <RibbonGalleryItem Content="Queue"/>
+                                <RibbonGalleryItem Content="QueueConsumerConsole"/>
+                                <RibbonGalleryItem Content="RedisDataAccess"/>
+                                <RibbonGalleryItem Content="RestApi"/>
+                                <RibbonGalleryItem Content="Schedule"/>
+                            </RibbonGalleryCategory>
+                        </RibbonGallery>
+                    </RibbonComboBox>
+                </RibbonGroup>
+                <RibbonGroup>
+                    <RibbonButton Label="Save" ToolTip="Save Template"
+                                  Command="{Binding PostTemplateAsyncCommand}" LargeImageSource="Images/Save.png" />
+                </RibbonGroup>
+                <RibbonGroup>
+                    <RibbonButton Label="Delete" ToolTip="Delete Template"
+                                  Command="{Binding DeleteTemplateAsyncCommand}" LargeImageSource="Images/Delete.png" />
+                </RibbonGroup>
+            </RibbonTab>
+            <RibbonTab Header="Search">
+                <RibbonGroup  Header="">
+                    <RibbonComboBox Label="URL: " 
+                                    SelectionBoxWidth="240"
+                                    HorizontalAlignment="Left">
+                        <RibbonGallery SelectedValue="{Binding Url, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
+                                       SelectedValuePath="Content"
+                                       MaxColumnCount="1" >
+                            <RibbonGalleryCategory >
+                                <RibbonGalleryItem Content="http://localhost:9200"/>
+                                <RibbonGalleryItem Content="http://cfdvw30.cfdynamics.net:8008"/>
+                                <RibbonGalleryItem Content="http://cfdvw30.cfdynamics.net:8080"/>
+                            </RibbonGalleryCategory>
+                        </RibbonGallery>
+                    </RibbonComboBox>
+                </RibbonGroup>
+                <RibbonGroup>
+                    <RibbonButton Label="Search" 
+                                  Command="{Binding SearchAsyncCommand}" LargeImageSource="Images/mail_new.png" />
+                </RibbonGroup>
+            </RibbonTab>
+            <RibbonTab Header="Send">
+                <RibbonGroup>
+                    <RibbonTextBox Label="Size: " TextBoxWidth="220"
+                                   Text="{Binding Size, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
+                    <RibbonTextBox Label="Count: " TextBoxWidth="220"
+                                   Text="{Binding Count, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
+                </RibbonGroup>
+                <RibbonGroup>
+                    <RibbonTextBox Label="Index Name: " TextBoxWidth="220"
+                                   Text="{Binding IndexName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
+                </RibbonGroup>
+                <RibbonGroup>
+                    <RibbonButton Label="REST" ToolTip="Send Using REST"
+                                  Command="{Binding SendAsyncCommand}" LargeImageSource="Images/mail_new.png" />
+                </RibbonGroup>
+                <RibbonGroup>
+                    <RibbonButton Label="ES.NET" ToolTip="Send"
+                                  Command="{Binding SendNetAsyncCommand}" LargeImageSource="Images/mail_new.png" />
+                </RibbonGroup>
+                <RibbonGroup>
+                    <RibbonButton Label="Send" ToolTip="Send Request"
+                                  Command="{Binding SendRequestAsyncCommand}" LargeImageSource="Images/mail_new.png" />
+                </RibbonGroup>
+            </RibbonTab>
+            <RibbonTab Header="Week">
+                <RibbonGroup>
+                    <RibbonTextBox Label="Week Number: " TextBoxWidth="220"
+                                   Text="{Binding WeekNumber, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
+                    <RibbonTextBox Label="DayOfYear: " TextBoxWidth="220"
+                                   Text="{Binding DayOfYear, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
+                </RibbonGroup>
+                <RibbonGroup>
+                    <DatePicker SelectedDateFormat="Long" SelectedDate="{Binding SelectedDay, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
+                                DisplayDateStart="1/01/2021" DisplayDateEnd="12/31/2021" 
+                                FirstDayOfWeek="Monday">
+                        <DatePicker.BlackoutDates>
+                            <CalendarDateRange Start="2021-04-01" End="2021-04-07" />
+                            <CalendarDateRange Start="2021-04-22" End="2021-04-28" />
+                        </DatePicker.BlackoutDates>
+                    </DatePicker>
+                </RibbonGroup>
+                <!--<RibbonGroup>
+                    <Calendar Margin="20" 
+                              SelectedDate="2/15/2021"
+                              DisplayDate="3/15/2021"
+                              DisplayDateStart="1/10/2021"
+                              DisplayDateEnd="4/18/2021"/>
+                </RibbonGroup>-->
+            </RibbonTab>
+        </Ribbon>
+
+        <TabControl Grid.Row="1" SelectedIndex="0">
+            <TabItem Header="Indexes">
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="3*"></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <DataGrid Name="IndexesDataGrid" Grid.Column="0" ItemsSource="{Binding Indexes}" SelectedItem="{Binding SelectedIndex}">
+                        <DataGrid.Columns>
+                            <!--<DataGridCheckBoxColumn Header="" Binding="{Binding Selected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></DataGridCheckBoxColumn>-->
+                            <DataGridTemplateColumn>
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <CheckBox IsChecked="{Binding Path=Selected, UpdateSourceTrigger=PropertyChanged}" Click="ButtonBase_OnClick" />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTextColumn Header="Index" Binding="{Binding Name}"/>
+                            <DataGridTextColumn Header="Uuid" Binding="{Binding Uuid}"/>
+                            <DataGridTextColumn Header="Health" Binding="{Binding Health}">
+                                <DataGridTextColumn.CellStyle>
+                                    <Style TargetType="DataGridCell">
+                                        <!--<Setter Property="Foreground" Value="White"></Setter>-->
+                                        <Setter Property="Background" Value="{Binding Health}"></Setter>
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding Health}" Value="yellow">
+                                                <Setter Property="Foreground" Value="Black"></Setter>
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding Health}" Value="green">
+                                                <Setter Property="Foreground" Value="White"></Setter>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </DataGridTextColumn.CellStyle>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Header="Status" Binding="{Binding Status}"/>
+                            <DataGridTextColumn Header="Docs Count" Binding="{Binding DocsCount, StringFormat={}{0:N0} }">
+                                <DataGridTextColumn.CellStyle>
+                                    <Style TargetType="DataGridCell">
+                                        <Setter Property="HorizontalAlignment" Value="Right"/>
+                                    </Style>
+                                </DataGridTextColumn.CellStyle>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Header="Store Size" Binding="{Binding StoreSize}">
+                                <DataGridTextColumn.CellStyle>
+                                    <Style TargetType="DataGridCell">
+                                        <Setter Property="HorizontalAlignment" Value="Right"/>
+                                    </Style>
+                                </DataGridTextColumn.CellStyle>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Header="Primary Shards" Binding="{Binding Pri}">
+                                <DataGridTextColumn.CellStyle>
+                                    <Style TargetType="DataGridCell">
+                                        <Setter Property="HorizontalAlignment" Value="Right"/>
+                                    </Style>
+                                </DataGridTextColumn.CellStyle>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Header="Replica Shards" Binding="{Binding Rep}">
+                                <DataGridTextColumn.CellStyle>
+                                    <Style TargetType="DataGridCell">
+                                        <Setter Property="HorizontalAlignment" Value="Right"/>
+                                    </Style>
+                                </DataGridTextColumn.CellStyle>
+                            </DataGridTextColumn>
+                            <DataGridCheckBoxColumn Header="Has Alias" Binding="{Binding HasAlias}"></DataGridCheckBoxColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <GridSplitter Grid.Column="1"/>
+                    <TextBox Grid.Column="2" VerticalAlignment="Stretch" AcceptsReturn="True" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" 
+                             SpellCheck.IsEnabled="False" Language="en-US" Text="{Binding SelectedIndex.Definition, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" >
+                    </TextBox>
+                    <GridSplitter Grid.Column="3"/>
+                    <DataGrid Name="AliasesDataGrid" Grid.Column="4" ItemsSource="{Binding SelectedIndex.Aliases}" SelectedItem="{Binding SelectedAlias}">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Alias" Binding="{Binding Name}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Aliases">
+                <DataGrid Name="AliasCountDataGrid" ItemsSource="{Binding Aliases}">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Alias" Binding="{Binding Name}" />
+                        <DataGridTextColumn Header="Count" Binding="{Binding Count, StringFormat={}{0:N0}}" >
+                            <!--<DataGridTextColumn.CellStyle>
+                                <Style TargetType="DataGridCell">
+                                    <Setter Property="HorizontalAlignment" Value="Right"/>
+                                </Style>
+                            </DataGridTextColumn.CellStyle>-->
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="HorizontalAlignment" Value="Right" />
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </TabItem>
+            <TabItem Header="Templates">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*"></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <DataGrid Grid.Column="0" Name="TemplatesDataGrid" ItemsSource="{Binding Templates}" SelectedItem="{Binding SelectedTemplate}">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Template" Binding="{Binding Name}"/>
+                            <DataGridTextColumn Header="IndexPatterns" Binding="{Binding IndexPatterns}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="ComposedOf" Binding="{Binding ComposedOf}"/>
+                            <DataGridTextColumn Header="Order" Binding="{Binding Order}"/>
+                            <DataGridTextColumn Header="Version" Binding="{Binding Version}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <GridSplitter Grid.Column="1"/>
+                    <TextBox Grid.Column="2" VerticalAlignment="Stretch" AcceptsReturn="True" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" 
+                             SpellCheck.IsEnabled="False" Language="en-US" Text="{Binding SelectedTemplate.Definition, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" >
+                    </TextBox>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Search">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        <ColumnDefinition Width="2*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <DataGrid Name="SearchDataGrid" Grid.Column="0" ItemsSource="{Binding Indexes}" SelectedItem="{Binding SelectedIndex}">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Index" Binding="{Binding Name}"/>
+                            <DataGridTextColumn Header="Docs Count" Binding="{Binding DocsCount, StringFormat={}{0:N0} }">
+                                <DataGridTextColumn.CellStyle>
+                                    <Style TargetType="DataGridCell">
+                                        <Setter Property="HorizontalAlignment" Value="Right"/>
+                                    </Style>
+                                </DataGridTextColumn.CellStyle>
+                            </DataGridTextColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <GridSplitter Grid.Column="1"/>
+                    <TextBox Grid.Column="2" VerticalAlignment="Stretch" AcceptsReturn="True" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" 
+                             SpellCheck.IsEnabled="False"  Language="en-US" Text="{Binding SearchRequest, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" >
+                    </TextBox>
+                    <GridSplitter Grid.Column="3"/>
+                    <TextBox Grid.Column="4" VerticalAlignment="Stretch" AcceptsReturn="True" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" 
+                             SpellCheck.IsEnabled="False"  Language="en-US" Text="{Binding Response, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" >
+                    </TextBox>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Send">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <TextBox Grid.Column="0" VerticalAlignment="Stretch" AcceptsReturn="True" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" 
+                             SpellCheck.IsEnabled="False"  Language="en-US" Text="{Binding SendRequest, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" >
+                    </TextBox>
+                    <GridSplitter Grid.Column="1" />
+                    <TextBox Grid.Column="2" VerticalAlignment="Stretch" AcceptsReturn="True" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" 
+                             SpellCheck.IsEnabled="False"  Language="en-US" Text="{Binding Response, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" >
+                    </TextBox>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Response">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <TextBox Grid.Row="0" Grid.ColumnSpan="3" AcceptsReturn="True" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" 
+                             SpellCheck.IsEnabled="False"  Language="en-US" Text="{Binding Url, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" >
+                    </TextBox>
+                    <TextBox Grid.Column="0" Grid.Row="1" VerticalAlignment="Stretch" AcceptsReturn="True" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" 
+                             SpellCheck.IsEnabled="False"  Language="en-US" Text="{Binding Request, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" >
+                    </TextBox>
+                    <GridSplitter Grid.Column="1" Grid.Row="1"/>
+                    <TextBox Grid.Column="2" Grid.Row="1" VerticalAlignment="Stretch" AcceptsReturn="True" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" 
+                             SpellCheck.IsEnabled="False"  Language="en-US" Text="{Binding Response, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" >
+                    </TextBox>
+                </Grid>
+            </TabItem>
+        </TabControl>
+        <StatusBar Grid.Row="2">
+            <StatusBarItem>
+                <TextBlock Name="StatusBarText" Text="{Binding Status}"></TextBlock>
+            </StatusBarItem>
+        </StatusBar>
+    </Grid>
+</RibbonWindow>
